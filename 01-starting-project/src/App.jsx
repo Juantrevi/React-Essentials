@@ -1,9 +1,18 @@
 import { CORE_CONCEPTS } from './data.js';
 import Header from "./components/Header/Header.jsx";
 import CoreConcept from "./components/CoreConcepts/CoreConcepts.jsx";
+import TabButton from "./components/Tab/TabButton";
 
 
 function App() {
+
+    let tabContent = 'Select a tab to display content.';
+
+    function handleSelect(selectedButton){
+        //Selected button should be a string if it's a component, jsc, props or state
+        tabContent = selectedButton;
+    }
+
   return (
     <div>
         <Header/>
@@ -22,7 +31,18 @@ function App() {
 
                 </ul>
             </section>
-          <h2>Time to get started!</h2>
+          <section id="examples">
+              <h2>Examples</h2>
+              <menu>
+                  <TabButton onSelect={() => handleSelect('Components')}>Components</TabButton>
+                  <TabButton onSelect={() => handleSelect('JSX')}>JSX</TabButton>
+                  <TabButton onSelect={() => handleSelect('Props')}>Props</TabButton>
+                  <TabButton onSelect={() => handleSelect('State')}>State</TabButton>
+              </menu>
+
+              <p>{tabContent}</p>
+
+          </section>
       </main>
     </div>
   );
